@@ -8,7 +8,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Setup middleware
 app.use(cors()); // Allow requests from your HTML file
@@ -55,7 +55,7 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${port}`);
   console.log('Your frontend (chatbot2.html) can now send requests to this server.');
 
@@ -65,3 +65,4 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
