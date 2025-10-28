@@ -13,6 +13,13 @@ const port = 3000;
 // Setup middleware
 app.use(cors()); // Allow requests from your HTML file
 app.use(express.json()); // Allow the server to read JSON
+// This line tells the server to host your HTML, CSS, etc.
+app.use(express.static(__dirname));
+
+// This line sends your HTML file when someone visits the main page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'chatbot2.html'));
+});
 
 // Configure the Google AI client
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
@@ -51,4 +58,10 @@ app.post('/chat', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
   console.log('Your frontend (chatbot2.html) can now send requests to this server.');
+
 });
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
