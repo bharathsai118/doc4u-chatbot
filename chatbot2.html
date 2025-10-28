@@ -106,6 +106,7 @@
         .feature-card {
             background: rgba(32, 44, 51, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
     </style>
@@ -236,7 +237,7 @@
                 <div class="bg-gray-800 rounded-t-2xl overflow-hidden shadow-2xl">
                     <div class="bg-gray-700 p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <button class="text-gray-300 hover:text-white">
+                            <button class="text-gray-300 hover:text-white" aria-label="Go back" title="Go back">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
                             <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center">
@@ -251,13 +252,13 @@
                             </div>
                         </div>
                         <div class="flex space-x-3">
-                            <button class="text-gray-300 hover:text-white">
+                            <button class="text-gray-300 hover:text-white" aria-label="Start video call" title="Start video call">
                                 <i class="fas fa-video"></i>
                             </button>
-                            <button class="text-gray-300 hover:text-white">
+                            <button class="text-gray-300 hover:text-white" aria-label="Start voice call" title="Start voice call">
                                 <i class="fas fa-phone"></i>
                             </button>
-                            <button class="text-gray-300 hover:text-white">
+                            <button class="text-gray-300 hover:text-white" aria-label="More options" title="More options">
                                 <i class="fas fa-ellipsis-v"></i>
                             </button>
                         </div>
@@ -316,10 +317,10 @@
                     </div>
 
                     <div class="bg-gray-700 p-4 flex items-center space-x-3">
-                        <button class="text-gray-400 hover:text-white">
+                        <button class="text-gray-400 hover:text-white" aria-label="Insert emoji" title="Insert emoji">
                             <i class="fas fa-smile text-xl"></i>
                         </button>
-                        <button class="text-gray-400 hover:text-white">
+                        <button class="text-gray-400 hover:text-white" aria-label="Attach file" title="Attach file">
                             <i class="fas fa-paperclip text-xl"></i>
                         </button>
                         <div class="flex-1 relative">
@@ -334,6 +335,7 @@
                         <button 
                             onclick="sendMessage()" 
                             class="w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-colors"
+                            aria-label="Send message" title="Send message"
                         >
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -426,7 +428,7 @@
 
             try {
                 // Send the message AND the history to your backend server
-                const response = await fetch('http://localhost:3000/chat', {
+                const response = await fetch('/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
